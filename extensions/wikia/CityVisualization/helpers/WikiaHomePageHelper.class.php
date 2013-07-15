@@ -47,6 +47,7 @@ class WikiaHomePageHelper extends WikiaModel {
 
 	protected $visualizationModel = null;
 	protected $collectionsModel;
+	protected $wikiService = null;
 
 	protected $excludeUsersFromInterstitial = array(
 		22439, //Wikia
@@ -324,7 +325,7 @@ class WikiaHomePageHelper extends WikiaModel {
 		$wikiStats = array();
 
 		if (!empty($wikiId)) {
-			$wikiService = new WikiService();
+			$wikiService = $this->getWikiService();
 
 			try {
 				//this try-catch block is here because of devbox environments
@@ -359,9 +360,11 @@ class WikiaHomePageHelper extends WikiaModel {
 	 * @return array wikiAdminAvatars
 	 */
 	public function getWikiAdminAvatars($wikiId) {
-		$adminAvatars = array();
-		if (!empty($wikiId)) {
-			$wikiService = new WikiService();
+		$adminAvatars = [];
+		
+		if( !empty( $wikiId ) ) {
+			$wikiService = $this->getWikiService();
+			
 			try {
 				//this try-catch block is here because of devbox environments
 				//where we don't have all wikis imported
@@ -370,20 +373,21 @@ class WikiaHomePageHelper extends WikiaModel {
 			} catch (Exception $e) {
 				$admins = array();
 			}
-
+			
 			foreach ($admins as $userId) {
 				$userInfo = $wikiService->getUserInfo($userId, $wikiId, self::AVATAR_SIZE, array($this,'isValidUserForInterstitial'));
-
+				
 				if (!empty($userInfo)) {
-					$userStatService = new UserStatsService($userId);
-					$userInfo['edits'] = $userStatService->getEditCountWiki($wikiId);
-					if (!empty($adminAvatars[$userInfo['name']])) {
+					$userStatService = $this->getUserStats( $userId );
+					$userInfo['edits'] = $userStatService->getEditCountWiki( $wikiId );
+					
+					if( !empty( $adminAvatars[$userInfo['name']] ) ) {
 						$userInfo['edits'] += $adminAvatars[$userInfo['name']]['edits'];
 					}
 
 					$adminAvatars[$userInfo['name']] = $userInfo;
 
-					if (count($adminAvatars) >= self::LIMIT_ADMIN_AVATARS) {
+					if( count($adminAvatars) >= self::LIMIT_ADMIN_AVATARS ) {
 						break;
 					}
 				}
@@ -402,7 +406,7 @@ class WikiaHomePageHelper extends WikiaModel {
 		$topEditorAvatars = array();
 
 		if (!empty($wikiId)) {
-			$wikiService = new WikiService();
+			$wikiService = $this->getWikiService();
 			try {
 				//this try-catch block is here because of devbox environments
 				//where we don't have all wikis imported
@@ -974,6 +978,18 @@ class WikiaHomePageHelper extends WikiaModel {
 			$wam = null;
 		}
 		return $wam;
+	}
+	
+	protected function getWikiService() {
+		if( !is_null( $this->wikiService ) ) {
+			$this->wikiService = new WikiService();
+		}
+		
+		return $this->wikiService;
+	}
+	
+	protected function getUserStats( $userId ) {
+		return new UserStatsService( $userId );
 	}
 
 }
