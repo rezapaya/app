@@ -304,12 +304,12 @@ TXT;
 		);
 	}
 	
-	private function getMocksForAdminAvatars( $mockedWikiAdminsIds, $mockedUserInfo, $mockedEditCount ) {
-		$wikiServiceMock = $this->getMock( 'WikiService', [ 'getWikiAdminIds', 'getUserInfo' ] );
+	private function getMocksForAdminsAvatarsTests( $mockedUsersIds, $mockedUserInfo, $mockedEditCount ) {
+		$wikiServiceMock = $this->getMock( 'WikiService', [ 'getWikiAdminIds', 'getTopEditors', 'getUserInfo' ] );
 		$wikiServiceMock
 			->expects( $this->any() )
 			->method( 'getWikiAdminIds' )
-			->will( $this->returnValue( $mockedWikiAdminsIds ) );
+			->will( $this->returnValue( $mockedUsersIds ) );
 		$wikiServiceMock
 			->expects( $this->any() )
 			->method( 'getUserInfo' )
@@ -338,12 +338,136 @@ TXT;
 	 * @dataProvider getWikiAdminAvatarsDataProvider
 	 */
 	public function testGetWikiAdminAvatars( $mockedWikiAdminsIds, $mockedUserInfo, $mockedEditCount, $mockedWikiId, $expAdminAvatars ) {
-		$wikiaHomePageHelperMock = $this->getMocksForAdminAvatars( $mockedWikiAdminsIds, $mockedUserInfo, $mockedEditCount );
+		$wikiaHomePageHelperMock = $this->getMocksForAdminsAvatarsTests( $mockedWikiAdminsIds, $mockedUserInfo, $mockedEditCount );
 		
 		/** @var WikiaHomePageHelper $wikiaHomePageHelperMock */
 		$adminAvatars = array_values( $wikiaHomePageHelperMock->getWikiAdminAvatars( $mockedWikiId ) );
 
 		$this->assertEquals( $expAdminAvatars, $adminAvatars );
+	}
+
+	public function getWikiAdminAvatarsDataProvider() {
+		return [
+			'invalid wiki id' => [
+				'mockedUsersIds' => [],
+				'mockedUserInfo' => [[], [], [], [], [], []],
+				'mockedEditCount' => 0,
+				'mockedWikiId' => 0,
+				'expectedResult' => [],
+			],
+			'no admins/editors' => [
+				'mockedUsersIds' => [],
+				'mockedUserInfo' => [[], [], [], [], [], []],
+				'mockedEditCount' => 0,
+				'mockedWikiId' => 531,
+				'expectedResult' => [],
+			],
+			'user not found' => [
+				'mockedUsersIds' => [ 123 ],
+				'mockedUserInfo' => [[], [], [], [], [], []],
+				'mockedEditCount' => 0,
+				'mockedWikiId' => self::TEST_CITY_ID,
+				'expectedResult' => [],
+			],
+			'only one user found' => [
+				'mockedUsersIds' => [ 123 ],
+				'mockedUserInfo' => [
+					[
+						'avatarUrl' => null,
+						'edits' => 0,
+						'name' => 'TestName',
+						'userPageUrl' => self::TEST_URL,
+						'userContributionsUrl' => self::TEST_URL,
+						'since' => self::TEST_MEMBER_DATE,
+						'userId' => '123'
+					],
+					[],
+					[],
+					[],
+					[],
+					[]
+				],
+				'mockedEditCount' => 0,
+				'mockedWikiId' => self::TEST_CITY_ID,
+				'expectedResult' => [
+					[
+						'avatarUrl' => null,
+						'edits' => 0,
+						'name' => 'TestName',
+						'userPageUrl' => self::TEST_URL,
+						'userContributionsUrl' => self::TEST_URL,
+						'since' => self::TEST_MEMBER_DATE,
+						'userId' => '123'
+					]
+				],
+			],
+			'exactly as many users found as we needed' => [
+				'mockedUsersIds' => [ 123, 345, 678 ],
+				'mockedUserInfo' => [
+					[
+						'avatarUrl' => null,
+						'edits' => 0,
+						'name' => 'TestName1',
+						'userPageUrl' => self::TEST_URL,
+						'userContributionsUrl' => self::TEST_URL,
+						'since' => self::TEST_MEMBER_DATE,
+						'userId' => '123'
+					],
+					[
+						'avatarUrl' => null,
+						'edits' => 0,
+						'name' => 'TestName2',
+						'userPageUrl' => self::TEST_URL,
+						'userContributionsUrl' => self::TEST_URL,
+						'since' => self::TEST_MEMBER_DATE,
+						'userId' => '345'
+					],
+					[
+						'avatarUrl' => null,
+						'edits' => 0,
+						'name' => 'TestName3',
+						'userPageUrl' => self::TEST_URL,
+						'userContributionsUrl' => self::TEST_URL,
+						'since' => self::TEST_MEMBER_DATE,
+						'userId' => '678'
+					],
+					[],
+					[],
+					[]
+				],
+				'mockedEditCount' => 0,
+				'mockedWikiId' => self::TEST_CITY_ID,
+				'expectedResult' => [
+					[
+						'avatarUrl' => null,
+						'edits' => 0,
+						'name' => 'TestName1',
+						'userPageUrl' => self::TEST_URL,
+						'userContributionsUrl' => self::TEST_URL,
+						'since' => self::TEST_MEMBER_DATE,
+						'userId' => '123'
+					],
+					[
+						'avatarUrl' => null,
+						'edits' => 0,
+						'name' => 'TestName2',
+						'userPageUrl' => self::TEST_URL,
+						'userContributionsUrl' => self::TEST_URL,
+						'since' => self::TEST_MEMBER_DATE,
+						'userId' => '345'
+					],
+					[
+						'avatarUrl' => null,
+						'edits' => 0,
+						'name' => 'TestName3',
+						'userPageUrl' => self::TEST_URL,
+						'userContributionsUrl' => self::TEST_URL,
+						'since' => self::TEST_MEMBER_DATE,
+						'userId' => '678'
+					]
+				],
+			],
+		];
 	}
 
 	public function testGetWikiAdminAvatarsReturnElementsCount() {
@@ -406,7 +530,7 @@ TXT;
 			],
 		];
 		$mockedEditCount = 0;
-		$wikiaHomePageHelperMock = $this->getMocksForAdminAvatars( $mockedWikiAdminsIds, $mockedUserInfo, $mockedEditCount );
+		$wikiaHomePageHelperMock = $this->getMocksForAdminsAvatarsTests( $mockedWikiAdminsIds, $mockedUserInfo, $mockedEditCount );
 		$expAdminAvatarsCount = 3;
 
 		/** @var WikiaHomePageHelper $wikiaHomePageHelperMock */
@@ -415,31 +539,54 @@ TXT;
 		$this->assertEquals( $expAdminAvatarsCount, $adminAvatarsCount );
 	}
 
-	public function getWikiAdminAvatarsDataProvider() {
+	/**
+	 * @dataProvider getWikiTopEditorAvatarsDataProvider
+	 */
+	public function testGetWikiTopEditorAvatars( $mockedUsersIds, $mockedUserInfo, $mockedWikiId, $expTopEditorsAvatars ) {
+		$wikiServiceMock = $this->getMock( 'WikiService', [ 'getWikiAdminIds', 'getTopEditors', 'getUserInfo' ] );
+		$wikiServiceMock
+			->expects( $this->any() )
+			->method( 'getTopEditors' )
+			->will( $this->returnValue( $mockedUsersIds ) );
+		$wikiServiceMock
+			->expects( $this->any() )
+			->method( 'getUserInfo' )
+			->will( $this->onConsecutiveCalls( $mockedUserInfo[0], $mockedUserInfo[1], $mockedUserInfo[2], $mockedUserInfo[3], $mockedUserInfo[4], $mockedUserInfo[5] ) );
+
+		$wikiaHomePageHelperMock = $this->getMock( 'WikiaHomePageHelper', [ 'getWikiService', 'getUserStats' ] );
+		$wikiaHomePageHelperMock
+			->expects( $this->any() )
+			->method( 'getWikiService' )
+			->will( $this->returnValue( $wikiServiceMock ) );
+		
+		/** @var WikiaHomePageHelper $wikiaHomePageHelperMock */
+		$topEditorsAvatars = array_values( $wikiaHomePageHelperMock->getWikiTopEditorAvatars( $mockedWikiId ) );
+
+		$this->assertEquals( $expTopEditorsAvatars, $topEditorsAvatars );
+	}
+
+	public function getWikiTopEditorAvatarsDataProvider() {
 		return [
-			'invalid wiki id' => [ 
-				'mockedWikiAdminsIds' => [],
+			'invalid wiki id' => [
+				'mockedUsersIds' => [],
 				'mockedUserInfo' => [[], [], [], [], [], []],
-				'mockedEditCount' => 0,
 				'mockedWikiId' => 0,
-				'expAdminAvatars' => [],
+				'expectedResult' => [],
 			],
-			'no admins' => [
-				'mockedWikiAdminsIds' => [],
+			'no admins/editors' => [
+				'mockedUsersIds' => [],
 				'mockedUserInfo' => [[], [], [], [], [], []],
-				'mockedEditCount' => 0,
 				'mockedWikiId' => 531,
-				'expAdminAvatars' => [],
+				'expectedResult' => [],
 			],
-			'admin user not found' => [
-				'mockedWikiAdminsIds' => [ 123 ],
+			'user not found' => [
+				'mockedUsersIds' => [ 123 => 0 ],
 				'mockedUserInfo' => [[], [], [], [], [], []],
-				'mockedEditCount' => 0,
 				'mockedWikiId' => self::TEST_CITY_ID,
-				'expAdminAvatars' => [],
+				'expectedResult' => [],
 			],
-			'only one admin found' => [
-				'mockedWikiAdminsIds' => [ 123 ],
+			'only one user found' => [
+				'mockedUsersIds' => [ 123 => 0 ],
 				'mockedUserInfo' => [
 					[
 						'avatarUrl' => null,
@@ -456,9 +603,8 @@ TXT;
 					[],
 					[]
 				],
-				'mockedEditCount' => 0,
 				'mockedWikiId' => self::TEST_CITY_ID,
-				'expAdminAvatars' => [
+				'expectedResult' => [
 					[
 						'avatarUrl' => null,
 						'edits' => 0,
@@ -470,8 +616,8 @@ TXT;
 					]
 				],
 			],
-			'exactly as many admins found as we needed' => [
-				'mockedWikiAdminsIds' => [ 123, 345, 678 ],
+			'exactly as many users found as we needed' => [
+				'mockedUsersIds' => [ 123 => 0, 345 => 0, 678 => 0 ],
 				'mockedUserInfo' => [
 					[
 						'avatarUrl' => null,
@@ -504,9 +650,8 @@ TXT;
 					[],
 					[]
 				],
-				'mockedEditCount' => 0,
 				'mockedWikiId' => self::TEST_CITY_ID,
-				'expAdminAvatars' => [
+				'expectedResult' => [
 					[
 						'avatarUrl' => null,
 						'edits' => 0,
@@ -537,125 +682,6 @@ TXT;
 				],
 			],
 		];
-	}
-
-	/**
-	 * @dataProvider getWikiTopEditorAvatarsDataProvider
-	 */
-	public function testGetWikiTopEditorAvatars($mockWikiId, $mockWikiServiceParam, $mockUserParam, $mockAvatarServiceParam, $expTopEditorAvatars) {
-		$this->markTestSkipped("Somehow this test started to be dependend on database connection on Friday 12th Jul 2013. I'll create ticket for Consumer Team to fix it.");
-		
-		$this->mockGlobalVariable('wgServer', self::TEST_URL);
-		$this->setUpMockObject('WikiService', $mockWikiServiceParam, true);
-		$this->setUpMockObject('User', $mockUserParam, true);
-		$this->setUpMockObject('AvatarService', $mockAvatarServiceParam, true);
-
-		$this->mockClass( 'GlobalTitle', $this->getMockWithMethods( 'GlobalTitle', array(
-			'getFullURL' => self::TEST_URL,
-		)), array( null, 'newFromText', 'newFromTextCached' ));
-
-
-		$this->setUpMockObject('WikiaHomePageHelper', array(
-			'formatMemberSinceDate' => self::TEST_MEMBER_DATE
-		), true);
-
-		$this->setUpMock();
-
-		// test
-		$helper = new WikiaHomePageHelper();
-		$topEditorAvatars = array_values($helper->getWikiTopEditorAvatars($mockWikiId));
-
-		$this->assertEquals($expTopEditorAvatars, $topEditorAvatars);
-	}
-
-	public function getWikiTopEditorAvatarsDataProvider() {
-		// 1 - wikiId = 0
-		$mockWikiId1 = 0;
-		$mockWikiServiceParam1 = null;
-		$mockUserParam1 = null;
-		$mockAvatarServiceParam1 = null;
-		$expTopEditorAvatars1 = array();
-
-		// 2 - no editors
-		$mockWikiId2 = self::TEST_CITY_ID;
-
-		// 3 - user not found
-		$mockWikiServiceParam2 = array(
-			'getTopEditors' => array(
-				123 => 0,
-			),
-		);
-		$mockUserParam3 = false;
-
-		// 4 - don't have avatar
-		$mockUserParam4 = array(
-			'newFromId' => null,
-			'isBlocked' => false,
-			'isBlockedGlobally' => false,
-		);
-
-		// 5 - editors have avatar < LIMIT_ADMIN_AVATARS + user edits = 0
-		$mockWikiServiceParam5 = array(
-			'getTopEditors' => array(
-				123 => 0,
-			),
-		);
-		$mockUserParam5 = array(
-			'newFromId' => null,
-			'getName' => 'TestName',
-			'isBlocked' => false,
-			'isBlockedGlobally' => false,
-		);
-		$expTopEditorAvatars5 = array(
-			array(
-				'avatarUrl' => null,
-				'edits' => 0,
-				'name' => 'TestName',
-				'userPageUrl' => self::TEST_URL,
-				'userContributionsUrl' => self::TEST_URL,
-				'since' => self::TEST_MEMBER_DATE,
-				'userId' => 123
-			),
-		);
-
-		// 6 - editors have avatar == LIMIT_ADMIN_AVATARS + user edits != 0
-		$mockWikiServiceParam6 = array(
-			'getTopEditors' => array(
-				11 => 5,
-				12 => 5,
-				13 => 5,
-				14 => 5,
-				15 => 5,
-				16 => 5,
-				17 => 5,
-			),
-		);
-		$expTopEditorAvatars6 = array(
-			array(
-				'avatarUrl' => null,
-				'edits' => 35,
-				'name' => 'TestName',
-				'userPageUrl' => self::TEST_URL,
-				'userContributionsUrl' => self::TEST_URL,
-				'since' => self::TEST_MEMBER_DATE,
-				'userId' => 17
-			)
-		);
-
-		return array(
-			'1 - wikiId = 0' =>
-			array($mockWikiId1, $mockWikiServiceParam1, $mockUserParam1, $mockAvatarServiceParam1, $expTopEditorAvatars1),
-			'2 - no editors' =>
-			array($mockWikiId2, $mockWikiServiceParam2, $mockUserParam1, $mockAvatarServiceParam1, $expTopEditorAvatars1),
-			'3 - user not found' =>
-			array($mockWikiId2, $mockWikiServiceParam2, $mockUserParam3, $mockAvatarServiceParam1, $expTopEditorAvatars1),
-			'4 - don\'t have avatar' =>
-			array($mockWikiId2, $mockWikiServiceParam2, $mockUserParam4, $mockAvatarServiceParam1, $expTopEditorAvatars1),
-			'5 - editors have avatar < LIMIT_ADMIN_AVATARS + user edits = 0' =>
-			array($mockWikiId2, $mockWikiServiceParam5, $mockUserParam5, $mockAvatarServiceParam1, $expTopEditorAvatars5),
-			'6 - editors have avatar = LIMIT_ADMIN_AVATARS + user edits != 0' =>
-			array($mockWikiId2, $mockWikiServiceParam6, $mockUserParam5, $mockAvatarServiceParam1, $expTopEditorAvatars6),
-		);
 	}
 
 	/**

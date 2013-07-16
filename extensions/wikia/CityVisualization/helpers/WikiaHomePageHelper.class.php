@@ -414,18 +414,18 @@ class WikiaHomePageHelper extends WikiaModel {
 			} catch (Exception $e) {
 				$topEditors = array();
 			}
-
-			foreach ($topEditors as $userId => $edits) {
+			
+			foreach( $topEditors as $userId => $edits ) {
 				$userInfo = $wikiService->getUserInfo($userId, $wikiId, self::AVATAR_SIZE, array($this,'isValidUserForInterstitial'));
-
-				if (!empty($userInfo)) {
+				
+				if( !empty($userInfo) ) {
 					$userInfo['edits'] = $edits;
-					if (!empty($topEditorAvatars[$userInfo['name']])) {
-						$userInfo['edits'] += $topEditorAvatars[$userInfo['name']]['edits'];
+					if( !empty( $topEditorAvatars[ $userInfo['name'] ] ) ) {
+						$userInfo['edits'] += $topEditorAvatars[ $userInfo['name'] ]['edits'];
 					}
 
-					$topEditorAvatars[$userInfo['name']] = $userInfo;
-					if (count($topEditorAvatars) >= self::LIMIT_TOP_EDITOR_AVATARS) {
+					$topEditorAvatars[ $userInfo['name'] ] = $userInfo;
+					if( count( $topEditorAvatars ) >= self::LIMIT_TOP_EDITOR_AVATARS ) {
 						break;
 					}
 				}
