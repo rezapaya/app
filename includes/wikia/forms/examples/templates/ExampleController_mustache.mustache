@@ -1,0 +1,19 @@
+<h2>Form with fields generated all at once</h2>
+{{#form}}
+	{{>Form_start}}
+	{{>Form_fields}}
+	{{>Form_end}}
+{{/form}}
+
+<h2>Form with fields generated one by another</h2>
+<form id="customForm" method="GET">
+{{#form.message}}
+	{{>Form_field}}
+{{/form.message}}
+{{#form.loginField}}
+	{{>Form_field}}
+{{/form.loginField}}
+{{#form.passwordField}}
+	{{>Form_field}}
+{{/form.passwordField}}
+</form>

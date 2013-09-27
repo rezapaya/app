@@ -21,4 +21,49 @@ class ExampleController extends WikiaSpecialPageController {
 		// set fields values that should be displayed in form
 		$this->form->setFieldsValues($vals);
 	}
+
+	// TODO: implement forms in mustache
+	// work in progress
+	public function mustache() {
+		$loginField = new stdClass();
+		$loginField->inputField = true;
+		$loginField->type = 'text';
+		$loginField->name = 'login';
+		$loginField->value = '';
+
+		$passwordField = new stdClass();
+		$passwordField->inputField = true;
+		$passwordField->type = 'password';
+		$passwordField->name = 'password';
+		$passwordField->value = '';
+
+		$message = new stdClass();
+		$message->textarea = true;
+		$message->name = 'message';
+		$message->id = 'formMessage';
+		$message->value = '';
+
+		$question = new stdClass();
+		$question->select = true;
+		$question->name = 'question';
+		$question->choices = [
+			[ 'optionValue' => 1, 'option' => 'Yes' ],
+			[ 'optionValue' => 0, 'option' => 'No' ]
+		];
+		$question->value = '';
+
+		$this->form = new stdClass();
+
+		$this->form->id = 'testId';
+		$this->form->method = 'post';
+		$this->form->action = 'test/action.php';
+
+		$this->form->fields = [ $loginField, $passwordField, $message, $question ];
+		$this->form->loginField = $loginField;
+		$this->form->passwordField = $passwordField;
+		$this->form->message = $message;
+		$this->form->question = $question;
+
+		$this->response->setTemplateEngine( WikiaResponse::TEMPLATE_ENGINE_MUSTACHE );
+	}
 }
