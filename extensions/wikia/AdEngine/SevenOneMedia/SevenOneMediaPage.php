@@ -106,6 +106,12 @@ wgStyleVersion="216916986";
 	<meta property="og:description" content=" Die Chaos-Derby-Banger (engl. Bloodring Banger) sind zwei Stockcars aus Grand Theft Auto: Vice…" />
 	<meta property="og:url" content="http://de.gta.rychu.wikia-dev.com/wiki/Chaos-Derby-Banger_(VC)" />
 <meta name="apple-itunes-app" content="app-id=623705389">
+
+<!-- (T2) Loading my_ad_integration files for myAd framework-->
+	<link rel="stylesheet" href="/__am/90987243/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.css" />
+	<script type="text/javascript" src="/__am/90987243/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.js"></script>
+<!-- (END) -->
+
 </head>
 <body class="mediawiki ltr ns-0 ns-subject page-Chaos-Derby-Banger_VC  TOC_hide wikia-grid wikinav2 skin-oasis oasis-oasis oasis-dark-theme">
 
