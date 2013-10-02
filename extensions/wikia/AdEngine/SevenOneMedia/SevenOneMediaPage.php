@@ -339,6 +339,65 @@ _qevents.push( { qacct:"p-8bG6eLqkH6Avk", labels:quantcastLabels } );
 					</div>
 	</div>
 </header>
+
+<!-- (T3) Ad configuration -->
+	<script type="text/javascript">
+		//<![CDATA[
+		var SOI_SITE     = 'wikia';
+		var SOI_SUBSITE  = 'videospiele'; // first level (home for home)
+		var SOI_SUB2SITE = 'gta'; // second level
+		var SOI_SUB3SITE = ''; // third level
+		var SOI_CONTENT  = 'content'; // content|video|gallery|game
+		var SOI_WERBUNG  = true;
+
+		// Available tags
+		var SOI_PU1 = true; // popup1
+		var SOI_FB2 = true; // fullbanner2
+		var SOI_SC1 = true; // skyscraper1
+
+		// Suitability for special ads
+		// - from popup1
+		var SOI_PU = true; // popup/popunder
+		var SOI_PL = true; // powerlayer
+		var SOI_FA = false; // baseboard (mnemonic: FooterAd, FloorAd)
+
+		// - from fullbanner2
+		var SOI_PB = true; // powerbanner (728x180)
+		var SOI_PD = true; // pushdown
+		var SOI_BB = true; // billboard
+		var SOI_WP = true; // wallpaper
+		var SOI_FP = true; // fireplace
+
+		// - from skyscraper1
+		var SOI_SB = true; // sidebar (300|400x600, auto-scaling, fixed position)
+
+		// Video ads
+		var SOI_VP  = false;
+		var SOI_LPY = false; // true => fullepisode
+		var SOI_VA1 = false; // preroll
+		var SOI_VA2 = false; // postroll
+		var SOI_VA3 = SOI_LPY; // midroll
+		var SOI_VA4 = false; // overlay
+		var SOI_VA5 = false; // sponsor
+		var SOI_AUTOPLAY = ''; // on|off
+		//]]>
+	</script>
+	<script type="text/javascript">
+		if (!window.myAd) {
+			window.myAd = {};
+			myAd.loadScript = myAd.insertAd = myAd.finishAd = myAd.exists = function(){};
+			myAd.getVideoAdRequest = function(){return '';}
+		}
+	</script>
+	<script type="text/javascript">
+		if (window.SOI_VP) myAd.loadScript('site');
+	</script>
+	<script type="text/javascript">
+		if (window.SOI_VP) myAd.loadScript('global');
+	</script>
+<!-- (END) -->
+
+
 <div class="WikiaTopAds" id="WikiaTopAds">
 <div class="WikiaTopAdsInner">
 
