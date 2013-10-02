@@ -852,22 +852,9 @@ Von „<a href="http://de.gta.rychu.wikia-dev.com/wiki/Chaos-Derby-Banger_(VC)?o
 				
 				<div id="WikiaArticleBottomAd" class="noprint">
 					
-<!-- BEGIN SLOTNAME: PREFOOTER_LEFT_BOXAD -->
-<div id="PREFOOTER_LEFT_BOXAD" class="wikia-ad noprint default-height">
-	<script>
-		window.adslots2.push(["PREFOOTER_LEFT_BOXAD",null,"AdEngine2"]);
-	</script>
-</div>
-<!-- END SLOTNAME: PREFOOTER_LEFT_BOXAD -->
+<!-- (T6) Remove obsolete code (PREFOOTER_LEFT_BOXAD) -->
 
-					
-<!-- BEGIN SLOTNAME: PREFOOTER_RIGHT_BOXAD -->
-<div id="PREFOOTER_RIGHT_BOXAD" class="wikia-ad noprint default-height">
-	<script>
-		window.adslots2.push(["PREFOOTER_RIGHT_BOXAD",null,"AdEngine2"]);
-	</script>
-</div>
-<!-- END SLOTNAME: PREFOOTER_RIGHT_BOXAD -->
+<!-- (T6) Remove obsolete code (PREFOOTER_RIGHT_BOXAD) -->
 
 				</div>
 			</div>
@@ -1106,13 +1093,7 @@ Von „<a href="http://de.gta.rychu.wikia-dev.com/wiki/Chaos-Derby-Banger_(VC)?o
 
 </section>
 
-<!-- BEGIN SLOTNAME: MIDDLE_RIGHT_BOXAD -->
-<div id="MIDDLE_RIGHT_BOXAD" class="wikia-ad noprint default-height">
-	<script>
-		window.adslots2.push(["MIDDLE_RIGHT_BOXAD",null,"AdEngine2"]);
-	</script>
-</div>
-<!-- END SLOTNAME: MIDDLE_RIGHT_BOXAD -->
+<!-- (T6) Remove obsolete code (MIDDLE_RIGHT_BOXAD) -->
 
 <section class="WikiaActivityModule module" id="WikiaRecentActivity">
 	<h1 class="activity-heading">Letzte Aktivitäten</h1>
@@ -1141,27 +1122,15 @@ Von „<a href="http://de.gta.rychu.wikia-dev.com/wiki/Chaos-Derby-Banger_(VC)?o
 
 			<a href="/wiki/Spezial:WikiActivity" title="Spezial:WikiActivity" class="more">Zeige mehr ></a>	</section>
 <section class="ChatModule module ChatModuleUninitialized"></section>
-<!-- BEGIN SLOTNAME: LEFT_SKYSCRAPER_2 -->
-<div id="LEFT_SKYSCRAPER_2" class="wikia-ad noprint default-height">
-	<script>
-		window.adslots2.push(["LEFT_SKYSCRAPER_2",null,"AdEngine2"]);
-	</script>
-</div>
-<!-- END SLOTNAME: LEFT_SKYSCRAPER_2 -->
+<!-- (T6) Remove obsolete code (LEFT_SKYSCRAPER_2) -->
 
 	<div id="WikiaAdInContentPlaceHolder"></div>
 
 </div>
 		
 		<footer id="WikiaFooter" class="WikiaFooter notoolbar">
-	
-<!-- BEGIN SLOTNAME: LEFT_SKYSCRAPER_3 -->
-<div id="LEFT_SKYSCRAPER_3" class="wikia-ad noprint default-height">
-	<script>
-		window.adslots2.push(["LEFT_SKYSCRAPER_3",null,"AdEngine2"]);
-	</script>
-</div>
-<!-- END SLOTNAME: LEFT_SKYSCRAPER_3 -->
+
+<!-- (T6) Remove obsolete code (LEFT_SKYSCRAPER_3) -->
 
 	
 	<section>
@@ -1259,31 +1228,13 @@ Von „<a href="http://de.gta.rychu.wikia-dev.com/wiki/Chaos-Derby-Banger_(VC)?o
 	</div>
 
 
-<!-- BEGIN SLOTNAME: GPT_FLUSH -->
-<div id="GPT_FLUSH" class="wikia-ad noprint default-height">
-	<script>
-		window.adslots2.push(["GPT_FLUSH",null,"AdEngine2"]);
-	</script>
-</div>
-<!-- END SLOTNAME: GPT_FLUSH -->
+<!-- (T6) Remove obsolete code (GPT_FLUSH) -->
 
 
-<!-- BEGIN SLOTNAME: INVISIBLE_1 -->
-<div id="INVISIBLE_1" class="wikia-ad noprint default-height">
-	<script>
-		window.adslots2.push(["INVISIBLE_1",null,"AdEngine2"]);
-	</script>
-</div>
-<!-- END SLOTNAME: INVISIBLE_1 -->
+<!-- (T6) Remove obsolete code (INVISIBLE_1) -->
 
 
-<!-- BEGIN SLOTNAME: INVISIBLE_2 -->
-<div id="INVISIBLE_2" class="wikia-ad noprint default-height">
-	<script>
-		window.adslots2.push(["INVISIBLE_2",null,"AdEngine2"]);
-	</script>
-</div>
-<!-- END SLOTNAME: INVISIBLE_2 -->
+<!-- (T6) Remove obsolete code (INVISIBLE_2) -->
 
 <!-- (T5) Loading of ads -->
 	<script type="text/javascript">
