@@ -110,7 +110,7 @@ wgStyleVersion="216916986";
 <!-- (T2) Loading my_ad_integration files for myAd framework-->
 	<link rel="stylesheet" href="/__am/90987243/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.css" />
 	<script type="text/javascript" src="/__am/90987243/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.js"></script>
-<!-- (END) -->
+<!-- (END T2) -->
 
 </head>
 <body class="mediawiki ltr ns-0 ns-subject page-Chaos-Derby-Banger_VC  TOC_hide wikia-grid wikinav2 skin-oasis oasis-oasis oasis-dark-theme">
@@ -395,45 +395,41 @@ _qevents.push( { qacct:"p-8bG6eLqkH6Avk", labels:quantcastLabels } );
 	<script type="text/javascript">
 		if (window.SOI_VP) myAd.loadScript('global');
 	</script>
-<!-- (END) -->
+<!-- (END T3) -->
 
-
-<div class="WikiaTopAds" id="WikiaTopAds">
-<div class="WikiaTopAdsInner">
-
-
-<!-- BEGIN SLOTNAME: TOP_LEADERBOARD -->
-<div id="TOP_LEADERBOARD" class="wikia-ad noprint default-height">
-	<script>
-		window.adslots2.push(["TOP_LEADERBOARD",null,"AdEngine2"]);
-	</script>
-</div>
-<!-- END SLOTNAME: TOP_LEADERBOARD -->
-
-
-<!-- BEGIN SLOTNAME: TOP_BUTTON_WIDE -->
-<div id="TOP_BUTTON_WIDE" class="wikia-ad noprint default-height">
-	<script>
-		window.adslots2.push(["TOP_BUTTON_WIDE",null,"AdEngine2"]);
-	</script>
-</div>
-<!-- END SLOTNAME: TOP_BUTTON_WIDE -->
-
-
-</div>
-
-
-<!-- BEGIN SLOTNAME: INVISIBLE_SKIN -->
-<div id="INVISIBLE_SKIN" class="wikia-ad noprint default-height">
-	<script>
-		window.adslots2.push(["INVISIBLE_SKIN",null,"AdEngine2"]);
-	</script>
-</div>
-<!-- END SLOTNAME: INVISIBLE_SKIN -->
-
-
-</div>
-
+<!-- (T4.1) Placeholder containers for popup1, fullbanner2, skyscraper1 -->
+	<div id="ads-outer" class="noprint">
+		<div id="ad-popup1" class="ad-wrapper">
+			<script type="text/javascript">
+				if (window.SOI_VP) myAd.insertAd('popup1');
+			</script>
+		</div>
+		<script type="text/javascript">
+			if (window.SOI_VP) myAd.finishAd('popup1');
+		</script>
+		<div id="TOP_BUTTON_WIDE"></div>
+		<div id="ad-fullbanner2-outer">
+			<div id="ad-fullbanner2" class="ad-wrapper" style="visibility:hidden;">
+				<script type="text/javascript">
+					if (window.SOI_VP) myAd.insertAd('fullbanner2');
+				</script>
+			</div>
+		</div>
+		<script type="text/javascript">
+			if (window.SOI_VP) myAd.finishAd('fullbanner2');
+		</script>
+		<div id="ad-skyscraper1-outer">
+			<div id="ad-skyscraper1" class="ad-wrapper" style="display:none;">
+				<script type="text/javascript">
+					if (window.SOI_VP) myAd.insertAd('skyscraper1');
+				</script>
+			</div>
+		</div>
+		<script type="text/javascript">
+			if (window.SOI_VP) myAd.finishAd('skyscraper1');
+		</script>
+	</div>
+<!-- (END T4.1) -->
 
 <section id="WikiaPage" class="WikiaPage V2 WikiaGrid">
 	<div id="WikiaPageBackground" class="WikiaPageBackground"></div>
@@ -887,13 +883,17 @@ Von „<a href="http://de.gta.rychu.wikia-dev.com/wiki/Chaos-Derby-Banger_(VC)?o
 	<button class="wikia-button"><img src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" class="sprite search" height="17" width="21"></button>
 </form>
 
-<!-- BEGIN SLOTNAME: TOP_RIGHT_BOXAD -->
-<div id="TOP_RIGHT_BOXAD" class="wikia-ad noprint default-height">
-	<script>
-		window.adslots2.push(["TOP_RIGHT_BOXAD",null,"AdEngine2"]);
-	</script>
-</div>
-<!-- END SLOTNAME: TOP_RIGHT_BOXAD -->
+<!-- (T4.2) Placeholder for rectangle1 -->
+	<div id="TOP_RIGHT_BOXAD" class="noprint">
+		<script type="text/javascript">
+			var SOI_RT1 = true;
+			var SOI_HP  = true;
+		</script>
+		<div id="ad-rectangle1-outer">
+			<div id="ad-rectangle1" class="ad-wrapper" style="display:none;"></div>
+		</div>
+	</div>
+<!-- (END T4.2) -->
 
 <section class="RelatedVideosModule module">
 	
