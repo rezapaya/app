@@ -1285,6 +1285,87 @@ Von „<a href="http://de.gta.rychu.wikia-dev.com/wiki/Chaos-Derby-Banger_(VC)?o
 </div>
 <!-- END SLOTNAME: INVISIBLE_2 -->
 
+<!-- (T5) Loading of ads -->
+	<script type="text/javascript">
+		myAd.loadScript('site');
+	</script>
+	<script type="text/javascript">
+		myAd.loadScript('global');
+	</script>
+	<div id="ads-postponed" style="display:none">
+		<table><tr><td>
+					<div id="ad-popup1-postponed" class="ad-wrapper">
+						<script type="text/javascript">
+							myAd.insertAd('popup1');
+						</script>
+					</div>
+				</td></tr></table>
+		<script type="text/javascript">
+			myAd.finishAd('popup1', 'move');
+		</script>
+		<table><tr><td>
+					<div id="ad-fullbanner2-postponed" class="ad-wrapper">
+						<script type="text/javascript">
+							myAd.insertAd('fullbanner2');
+						</script>
+					</div>
+				</td></tr></table>
+		<script type="text/javascript">
+			myAd.finishAd('fullbanner2', 'move');
+			if (!myAd.isSpecialAd('fullbanner2') && window.adslots2)
+				window.adslots2.push(["TOP_BUTTON_WIDE",null,"AdEngine2"]);	</script>
+		<table><tr><td>
+					<div id="ad-skyscraper1-postponed" class="ad-wrapper">
+						<script type="text/javascript">
+							myAd.insertAd('skyscraper1');
+						</script>
+					</div>
+				</td></tr></table>
+		<script type="text/javascript">
+			myAd.finishAd('skyscraper1', 'move');
+		</script>
+		<table><tr><td>
+					<div id="ad-rectangle1-postponed" class="ad-wrapper">
+						<script type="text/javascript">
+							myAd.insertAd('rectangle1');
+						</script>
+					</div>
+				</td></tr></table>
+		<script type="text/javascript">
+			myAd.finishAd('rectangle1', 'move');
+		</script>
+		<table><tr><td>
+					<div id="ad-promo1-postponed" class="ad-wrapper">
+						<script type="text/javascript">
+							myAd.insertAd('promo1');
+						</script>
+					</div>
+				</td></tr></table>
+		<script type="text/javascript">
+			myAd.finishAd('promo1', 'move');
+		</script>
+		<table><tr><td>
+					<div id="ad-promo2-postponed" class="ad-wrapper">
+						<script type="text/javascript">
+							myAd.insertAd('promo2');
+						</script>
+					</div>
+				</td></tr></table>
+		<script type="text/javascript">
+			myAd.finishAd('promo2', 'move');
+		</script>
+		<table><tr><td>
+					<div id="ad-promo3-postponed" class="ad-wrapper">
+						<script type="text/javascript">
+							myAd.insertAd('promo3');
+						</script>
+					</div>
+				</td></tr></table>
+		<script type="text/javascript">
+			myAd.finishAd('promo3', 'move');
+		</script>
+	</div>
+<!-- (END T5) -->
 
 	<!--[if lt IE 8]>
 		<script src="http://rychu.wikia-dev.com/__cb216916986/resources/wikia/libraries/json2/json2.js"></script>
