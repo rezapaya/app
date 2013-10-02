@@ -1,0 +1,38 @@
+# 1. Replace rychu with your devbox name in this file
+# 2. Copy this to /etc/apache2/sites-enabled/99-wikia-dev
+# 3. sudo ln -sf /usr/wikia/source/wiki/extensions/wikia/AdEngine/SevenOneMedia/SevenOneMediaPage.php /usr/wikia/docroot/wiki.factory/
+# 4. Restart apache2
+# 5. The test URL is: http://de.gta.rychu.wikia-dev.com/wiki/Chaos-Derby-Banger_%28VC%29
+
+<IfModule mpm_prefork_module>
+    StartServers          30
+    MinSpareServers       16
+    MaxSpareServers       32
+    ServerLimit           40
+    MaxClients            40
+    MaxRequestsPerChild   50
+</IfModule>
+
+<VirtualHost *:80>
+
+  CustomLog /var/log/apache2/access.log common
+
+  ServerAdmin technical@wikia.com
+
+  DocumentRoot /usr/wikia/docroot/wiki.factory
+  ServerName de.gta.rychu.wikia-dev.com
+  RewriteEngine on
+
+  # ASSET MANAGER REWRITE
+  RewriteRule ^/__am/(\d+)/([A-Za-z]+)/([^/]*)/(.*) /index.php?action=ajax&rs=AssetsManagerEntryPoint&cb=$1&type=$2&params=$3&oid=$4 [NE,B,L]
+
+  RewriteRule ^/(wiki/)?Chaos-Derby-Banger /SevenOneMediaPage.php [L,QSA]
+  RewriteRule ^/wiki/(.*) /index.php?title=$1 [L,QSA]
+  RewriteRule ^/rss/(.*) /index.php?title=$1&feed=rss [L,QSA]
+  RewriteRule ^/__cb[0-9]+/(.*)$ /$1 [L,QSA]
+  <Directory "/usr/wikia/docroot/wiki.factory">
+    Options ExecCGI FollowSymLinks
+    AllowOverride AuthConfig FileInfo Limit
+    DirectoryIndex index.php
+  </Directory>
+</VirtualHost>
