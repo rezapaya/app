@@ -8,7 +8,7 @@
 	*                                                               *
 	*****************************************************************
 
-	VARIANT: integration as requested in documents
+	VARIANT: with all JS code on bottom
 
 -->
 
@@ -109,10 +109,9 @@ wgStyleVersion="216916986";
 	<meta property="og:url" content="http://de.gta.rychu.wikia-dev.com/wiki/Chaos-Derby-Banger_(VC)" />
 <meta name="apple-itunes-app" content="app-id=623705389">
 
-<!-- (T2) Loading my_ad_integration files for myAd framework-->
+<!-- Media 71 integration -->
 	<link rel="stylesheet" href="/__am/90987243/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.css" />
-	<script type="text/javascript" src="/__am/90987243/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.js"></script>
-<!-- (END T2) -->
+<!-- END of M71 -->
 
 </head>
 <body class="mediawiki ltr ns-0 ns-subject page-Chaos-Derby-Banger_VC  TOC_hide wikia-grid wikinav2 skin-oasis oasis-oasis oasis-dark-theme">
@@ -342,94 +341,16 @@ _qevents.push( { qacct:"p-8bG6eLqkH6Avk", labels:quantcastLabels } );
 	</div>
 </header>
 
-<!-- (T3) Ad configuration -->
-	<script type="text/javascript">
-		//<![CDATA[
-		var SOI_SITE     = 'wikia';
-		var SOI_SUBSITE  = 'videospiele'; // first level (home for home)
-		var SOI_SUB2SITE = 'gta'; // second level
-		var SOI_SUB3SITE = ''; // third level
-		var SOI_CONTENT  = 'content'; // content|video|gallery|game
-		var SOI_WERBUNG  = true;
-
-		// Available tags
-		var SOI_PU1 = true; // popup1
-		var SOI_FB2 = true; // fullbanner2
-		var SOI_SC1 = true; // skyscraper1
-
-		// Suitability for special ads
-		// - from popup1
-		var SOI_PU = true; // popup/popunder
-		var SOI_PL = true; // powerlayer
-		var SOI_FA = false; // baseboard (mnemonic: FooterAd, FloorAd)
-
-		// - from fullbanner2
-		var SOI_PB = true; // powerbanner (728x180)
-		var SOI_PD = true; // pushdown
-		var SOI_BB = true; // billboard
-		var SOI_WP = true; // wallpaper
-		var SOI_FP = true; // fireplace
-
-		// - from skyscraper1
-		var SOI_SB = true; // sidebar (300|400x600, auto-scaling, fixed position)
-
-		// Video ads
-		var SOI_VP  = false;
-		var SOI_LPY = false; // true => fullepisode
-		var SOI_VA1 = false; // preroll
-		var SOI_VA2 = false; // postroll
-		var SOI_VA3 = SOI_LPY; // midroll
-		var SOI_VA4 = false; // overlay
-		var SOI_VA5 = false; // sponsor
-		var SOI_AUTOPLAY = ''; // on|off
-		//]]>
-	</script>
-	<script type="text/javascript">
-		if (!window.myAd) {
-			window.myAd = {};
-			myAd.loadScript = myAd.insertAd = myAd.finishAd = myAd.exists = function(){};
-			myAd.getVideoAdRequest = function(){return '';}
-		}
-	</script>
-	<script type="text/javascript">
-		if (window.SOI_VP) myAd.loadScript('site');
-	</script>
-	<script type="text/javascript">
-		if (window.SOI_VP) myAd.loadScript('global');
-	</script>
-<!-- (END T3) -->
-
 <!-- (T4.1) Placeholder containers for popup1, fullbanner2, skyscraper1 -->
 	<div id="ads-outer" class="noprint">
-		<div id="ad-popup1" class="ad-wrapper">
-			<script type="text/javascript">
-				if (window.SOI_VP) myAd.insertAd('popup1');
-			</script>
-		</div>
-		<script type="text/javascript">
-			if (window.SOI_VP) myAd.finishAd('popup1');
-		</script>
+		<div id="ad-popup1" class="ad-wrapper"></div>
 		<div id="TOP_BUTTON_WIDE"></div>
 		<div id="ad-fullbanner2-outer">
-			<div id="ad-fullbanner2" class="ad-wrapper" style="visibility:hidden;">
-				<script type="text/javascript">
-					if (window.SOI_VP) myAd.insertAd('fullbanner2');
-				</script>
-			</div>
+			<div id="ad-fullbanner2" class="ad-wrapper" style="visibility:hidden;"></div>
 		</div>
-		<script type="text/javascript">
-			if (window.SOI_VP) myAd.finishAd('fullbanner2');
-		</script>
 		<div id="ad-skyscraper1-outer">
-			<div id="ad-skyscraper1" class="ad-wrapper" style="display:none;">
-				<script type="text/javascript">
-					if (window.SOI_VP) myAd.insertAd('skyscraper1');
-				</script>
-			</div>
+			<div id="ad-skyscraper1" class="ad-wrapper" style="display:none;"></div>
 		</div>
-		<script type="text/javascript">
-			if (window.SOI_VP) myAd.finishAd('skyscraper1');
-		</script>
 	</div>
 <!-- (END T4.1) -->
 
@@ -1240,87 +1161,19 @@ Von „<a href="http://de.gta.rychu.wikia-dev.com/wiki/Chaos-Derby-Banger_(VC)?o
 
 <!-- (T6) Remove obsolete code (INVISIBLE_2) -->
 
-<!-- (T5) Loading of ads -->
-	<script type="text/javascript">
-		myAd.loadScript('site');
-	</script>
-	<script type="text/javascript">
-		myAd.loadScript('global');
-	</script>
-	<div id="ads-postponed" style="display:none">
-		<table><tr><td>
-					<div id="ad-popup1-postponed" class="ad-wrapper">
-						<script type="text/javascript">
-							myAd.insertAd('popup1');
-						</script>
-					</div>
-				</td></tr></table>
-		<script type="text/javascript">
-			myAd.finishAd('popup1', 'move');
-		</script>
-		<table><tr><td>
-					<div id="ad-fullbanner2-postponed" class="ad-wrapper">
-						<script type="text/javascript">
-							myAd.insertAd('fullbanner2');
-						</script>
-					</div>
-				</td></tr></table>
-		<script type="text/javascript">
-			myAd.finishAd('fullbanner2', 'move');
-			if (!myAd.isSpecialAd('fullbanner2') && window.adslots2)
-				window.adslots2.push(["TOP_BUTTON_WIDE",null,"AdEngine2"]);	</script>
-		<table><tr><td>
-					<div id="ad-skyscraper1-postponed" class="ad-wrapper">
-						<script type="text/javascript">
-							myAd.insertAd('skyscraper1');
-						</script>
-					</div>
-				</td></tr></table>
-		<script type="text/javascript">
-			myAd.finishAd('skyscraper1', 'move');
-		</script>
-		<table><tr><td>
-					<div id="ad-rectangle1-postponed" class="ad-wrapper">
-						<script type="text/javascript">
-							myAd.insertAd('rectangle1');
-						</script>
-					</div>
-				</td></tr></table>
-		<script type="text/javascript">
-			myAd.finishAd('rectangle1', 'move');
-		</script>
-		<table><tr><td>
-					<div id="ad-promo1-postponed" class="ad-wrapper">
-						<script type="text/javascript">
-							myAd.insertAd('promo1');
-						</script>
-					</div>
-				</td></tr></table>
-		<script type="text/javascript">
-			myAd.finishAd('promo1', 'move');
-		</script>
-		<table><tr><td>
-					<div id="ad-promo2-postponed" class="ad-wrapper">
-						<script type="text/javascript">
-							myAd.insertAd('promo2');
-						</script>
-					</div>
-				</td></tr></table>
-		<script type="text/javascript">
-			myAd.finishAd('promo2', 'move');
-		</script>
-		<table><tr><td>
-					<div id="ad-promo3-postponed" class="ad-wrapper">
-						<script type="text/javascript">
-							myAd.insertAd('promo3');
-						</script>
-					</div>
-				</td></tr></table>
-		<script type="text/javascript">
-			myAd.finishAd('promo3', 'move');
-		</script>
-	</div>
-<!-- (END T5) -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<!--[if lt IE 8]>
 		<script src="http://rychu.wikia-dev.com/__cb216916986/resources/wikia/libraries/json2/json2.js"></script>
@@ -1366,6 +1219,178 @@ mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.
 <script src="http://de.gta.rychu.wikia-dev.com/__load/-/cb%3D216916986%26debug%3Dfalse%26lang%3Dde%26only%3Dscripts%26skin%3Doasis/site"></script>
 <script>if (JSSnippetsStack.length) $.getScript('http://rychu.wikia-dev.com/__am/216916986/one/minify%3D1/extensions/wikia/JSSnippets/js/JSSnippets.js');</script><!-- Facebook integration -->
 <div id="fb-root"></div>
+
+
+
+
+
+<!-- SevenOne Media BEGIN -->
+
+
+
+
+<!-- (T2) Loading my_ad_integration files for myAd framework-->
+<script type="text/javascript" src="/__am/90987243/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.js"></script>
+<!-- (END T2) -->
+
+<!-- (T3) Ad configuration -->
+<script type="text/javascript">
+	//<![CDATA[
+	var SOI_SITE     = 'wikia';
+	var SOI_SUBSITE  = 'videospiele'; // first level (home for home)
+	var SOI_SUB2SITE = 'gta'; // second level
+	var SOI_SUB3SITE = ''; // third level
+	var SOI_CONTENT  = 'content'; // content|video|gallery|game
+	var SOI_WERBUNG  = true;
+
+	// Available tags
+	var SOI_PU1 = true; // popup1
+	var SOI_FB2 = true; // fullbanner2
+	var SOI_SC1 = true; // skyscraper1
+
+	// Suitability for special ads
+	// - from popup1
+	var SOI_PU = true; // popup/popunder
+	var SOI_PL = true; // powerlayer
+	var SOI_FA = false; // baseboard (mnemonic: FooterAd, FloorAd)
+
+	// - from fullbanner2
+	var SOI_PB = true; // powerbanner (728x180)
+	var SOI_PD = true; // pushdown
+	var SOI_BB = true; // billboard
+	var SOI_WP = true; // wallpaper
+	var SOI_FP = true; // fireplace
+
+	// - from skyscraper1
+	var SOI_SB = true; // sidebar (300|400x600, auto-scaling, fixed position)
+
+	// Video ads
+	var SOI_VP  = false;
+	var SOI_LPY = false; // true => fullepisode
+	var SOI_VA1 = false; // preroll
+	var SOI_VA2 = false; // postroll
+	var SOI_VA3 = SOI_LPY; // midroll
+	var SOI_VA4 = false; // overlay
+	var SOI_VA5 = false; // sponsor
+	var SOI_AUTOPLAY = ''; // on|off
+	//]]>
+</script>
+<script type="text/javascript">
+	if (!window.myAd) {
+		window.myAd = {};
+		myAd.loadScript = myAd.insertAd = myAd.finishAd = myAd.exists = function(){};
+		myAd.getVideoAdRequest = function(){return '';}
+	}
+</script>
+<script type="text/javascript">
+	if (window.SOI_VP) myAd.loadScript('site');
+</script>
+<script type="text/javascript">
+	if (window.SOI_VP) myAd.loadScript('global');
+</script>
+<!-- (END T3) -->
+
+<!-- (R1) Load ads after -->
+
+<script type="text/javascript">
+	if (window.SOI_VP) {
+		myAd.insertAd('popup1');
+		myAd.finishAd('popup1');
+		myAd.insertAd('fullbanner2');
+		myAd.finishAd('fullbanner2');
+		myAd.insertAd('skyscraper1');
+		myAd.finishAd('skyscraper1');
+	}
+</script>
+<!-- (END R1) -->
+
+<!-- (T5) Loading of ads -->
+<script type="text/javascript">
+	myAd.loadScript('site');
+</script>
+<script type="text/javascript">
+	myAd.loadScript('global');
+</script>
+<div id="ads-postponed" style="display:none">
+	<table><tr><td>
+				<div id="ad-popup1-postponed" class="ad-wrapper">
+					<script type="text/javascript">
+						myAd.insertAd('popup1');
+					</script>
+				</div>
+			</td></tr></table>
+	<script type="text/javascript">
+		myAd.finishAd('popup1', 'move');
+	</script>
+	<table><tr><td>
+				<div id="ad-fullbanner2-postponed" class="ad-wrapper">
+					<script type="text/javascript">
+						myAd.insertAd('fullbanner2');
+					</script>
+				</div>
+			</td></tr></table>
+	<script type="text/javascript">
+		myAd.finishAd('fullbanner2', 'move');
+		if (!myAd.isSpecialAd('fullbanner2') && window.adslots2)
+			window.adslots2.push(["TOP_BUTTON_WIDE",null,"AdEngine2"]);	</script>
+	<table><tr><td>
+				<div id="ad-skyscraper1-postponed" class="ad-wrapper">
+					<script type="text/javascript">
+						myAd.insertAd('skyscraper1');
+					</script>
+				</div>
+			</td></tr></table>
+	<script type="text/javascript">
+		myAd.finishAd('skyscraper1', 'move');
+	</script>
+	<table><tr><td>
+				<div id="ad-rectangle1-postponed" class="ad-wrapper">
+					<script type="text/javascript">
+						myAd.insertAd('rectangle1');
+					</script>
+				</div>
+			</td></tr></table>
+	<script type="text/javascript">
+		myAd.finishAd('rectangle1', 'move');
+	</script>
+	<table><tr><td>
+				<div id="ad-promo1-postponed" class="ad-wrapper">
+					<script type="text/javascript">
+						myAd.insertAd('promo1');
+					</script>
+				</div>
+			</td></tr></table>
+	<script type="text/javascript">
+		myAd.finishAd('promo1', 'move');
+	</script>
+	<table><tr><td>
+				<div id="ad-promo2-postponed" class="ad-wrapper">
+					<script type="text/javascript">
+						myAd.insertAd('promo2');
+					</script>
+				</div>
+			</td></tr></table>
+	<script type="text/javascript">
+		myAd.finishAd('promo2', 'move');
+	</script>
+	<table><tr><td>
+				<div id="ad-promo3-postponed" class="ad-wrapper">
+					<script type="text/javascript">
+						myAd.insertAd('promo3');
+					</script>
+				</div>
+			</td></tr></table>
+	<script type="text/javascript">
+		myAd.finishAd('promo3', 'move');
+	</script>
+</div>
+<!-- (END T5) -->
+
+
+
+<!-- SevenOne Media END -->
+
+
 </body>
 
 <!-- Served by dev-rychu in 0.715 secs. -->

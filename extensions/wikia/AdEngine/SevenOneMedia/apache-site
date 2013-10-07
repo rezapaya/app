@@ -26,6 +26,7 @@
   # ASSET MANAGER REWRITE
   RewriteRule ^/__am/(\d+)/([A-Za-z]+)/([^/]*)/(.*) /index.php?action=ajax&rs=AssetsManagerEntryPoint&cb=$1&type=$2&params=$3&oid=$4 [NE,B,L]
 
+  RewriteRule ^/(wiki/)?Chaos-Derby-Banger-71-Bottom /SevenOneMediaPageBottom.php [L,QSA]
   RewriteRule ^/(wiki/)?Chaos-Derby-Banger /SevenOneMediaPage.php [L,QSA]
   RewriteRule ^/wiki/(.*) /index.php?title=$1 [L,QSA]
   RewriteRule ^/rss/(.*) /index.php?title=$1&feed=rss [L,QSA]
