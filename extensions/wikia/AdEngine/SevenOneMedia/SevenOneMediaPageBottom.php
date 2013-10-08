@@ -343,13 +343,21 @@ _qevents.push( { qacct:"p-8bG6eLqkH6Avk", labels:quantcastLabels } );
 
 <!-- (T4.1) Placeholder containers for popup1, fullbanner2, skyscraper1 -->
 	<div id="ads-outer" class="noprint">
-		<div id="ad-popup1" class="ad-wrapper"></div>
-		<div id="TOP_BUTTON_WIDE"></div>
-		<div id="ad-fullbanner2-outer">
-			<div id="ad-fullbanner2" class="ad-wrapper" style="visibility:hidden;"></div>
+		<div id="DE_POPUP1">
+			<div id="ad-popup1-outer">
+				<div id="ad-popup1" class="ad-wrapper"></div>
+			</div>
 		</div>
-		<div id="ad-skyscraper1-outer">
-			<div id="ad-skyscraper1" class="ad-wrapper" style="display:none;"></div>
+		<div id="TOP_BUTTON_WIDE"></div>
+		<div id="DE_FULLBANNER2">
+			<div id="ad-fullbanner2-outer">
+				<div id="ad-fullbanner2" class="ad-wrapper" style="visibility:hidden;"></div>
+			</div>
+		</div>
+		<div id="DE_SKYSCRAPER1"></div>
+			<div id="ad-skyscraper1-outer">
+				<div id="ad-skyscraper1" class="ad-wrapper" style="display:none;"></div>
+			</div>
 		</div>
 	</div>
 <!-- (END T4.1) -->
