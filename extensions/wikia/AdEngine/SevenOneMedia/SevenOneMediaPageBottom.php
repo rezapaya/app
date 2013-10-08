@@ -1250,7 +1250,7 @@ mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.
 
 	// Suitability for special ads
 	// - from popup1
-	var SOI_PU = true; // popup/popunder
+	var SOI_PU = false; // popup/popunder
 	var SOI_PL = true; // powerlayer
 	var SOI_FA = false; // baseboard (mnemonic: FooterAd, FloorAd)
 
