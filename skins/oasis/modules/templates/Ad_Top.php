@@ -1,6 +1,8 @@
 <div class="WikiaTopAds" id="WikiaTopAds">
 <div class="WikiaTopAdsInner">
 
+<?= $app->renderView('Ad', 'Index', array('slotname' => 'TOP_INVISIBLE')); ?>
+
 <?php
 
 if (WikiaPageType::isWikiaHub()) {
@@ -27,6 +29,7 @@ if ($wg->EnableTopButtonWide) {
 
 </div>
 
+<?= $app->renderView('Ad', 'Index', array('slotname' => 'TOP_SKYSCRAPER')); ?>
 <?= $app->renderView('Ad', 'Index', array('slotname' => 'INVISIBLE_SKIN')); ?>
 
 </div>
