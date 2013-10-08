@@ -1,10 +1,10 @@
 /*
-	$Revision: 1.4 $Date: 2013/04/28 11:09:10 $
+	$Revision: 1.5 $Date: 2013/10/07 15:43:21 $
 	SevenOne Media Ad Integration for de.wikia.com
 */
 
 window.myAd = {
-	revision: '$Revision: 1.4 $Date: 2013/04/28 11:09:10 $',
+	revision: '$Revision: 1.5 $Date: 2013/10/07 15:43:21 $',
 	soi_site_script:  'wikia.js',
 
 	container_prefix: 'ad-',
@@ -149,7 +149,8 @@ window.myAd = {
 						}
 					}
 					else {
-						// no collapse
+						if (!window.SOI_VP || window.SOI_AUTOPLAY == 'off')
+							container.style.height = '0px';
 					}
 				}
 				else if (ad_id == 'skyscraper1') {

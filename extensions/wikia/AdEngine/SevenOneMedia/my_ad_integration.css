@@ -1,8 +1,12 @@
 /*
-	$Revision: 1.5 $Date: 2013/04/28 11:08:14 $
+	$Revision: 1.6 $Date: 2013/10/07 15:37:56 $
 	SevenOne Media Ad Integration for de.wikia.com
 */
 
+.ad-version:after {
+	content: '$Revision: 1.6 $';
+	display: none;
+}
 .ad-wrapper div,
 .ad-wrapper object,
 .ad-wrapper embed,
