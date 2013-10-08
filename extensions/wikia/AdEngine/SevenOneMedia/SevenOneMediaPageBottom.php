@@ -1282,27 +1282,6 @@ mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.
 		myAd.getVideoAdRequest = function(){return '';}
 	}
 </script>
-<script type="text/javascript">
-	if (window.SOI_VP) myAd.loadScript('site');
-</script>
-<script type="text/javascript">
-	if (window.SOI_VP) myAd.loadScript('global');
-</script>
-<!-- (END T3) -->
-
-<!-- (R1) Load ads after -->
-
-<script type="text/javascript">
-	if (window.SOI_VP) {
-		myAd.insertAd('popup1');
-		myAd.finishAd('popup1');
-		myAd.insertAd('fullbanner2');
-		myAd.finishAd('fullbanner2');
-		myAd.insertAd('skyscraper1');
-		myAd.finishAd('skyscraper1');
-	}
-</script>
-<!-- (END R1) -->
 
 <!-- (T5) Loading of ads -->
 <script type="text/javascript">
