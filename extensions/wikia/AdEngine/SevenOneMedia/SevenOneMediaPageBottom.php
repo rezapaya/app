@@ -1311,7 +1311,7 @@ mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.
 	<script type="text/javascript">
 		myAd.finishAd('fullbanner2', 'move');
 		if (!myAd.isSpecialAd('fullbanner2') && window.adslots2)
-			window.adslots2.push(["TOP_BUTTON_WIDE",null,"AdEngine2"]);	</script>
+			window.adslots2.push(["TOP_BUTTON_WIDE.force",null,"AdEngine2"]);	</script>
 	<table><tr><td>
 				<div id="ad-skyscraper1-postponed" class="ad-wrapper">
 					<script type="text/javascript">
