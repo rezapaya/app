@@ -110,8 +110,8 @@ wgStyleVersion="216916986";
 <meta name="apple-itunes-app" content="app-id=623705389">
 
 <!-- (T2) Loading my_ad_integration files for myAd framework-->
-	<link rel="stylesheet" href="/__am/90987243/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.css" />
-	<script type="text/javascript" src="/__am/90987243/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.js"></script>
+	<link rel="stylesheet" href="/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.css" />
+	<script type="text/javascript" src="/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.js"></script>
 <!-- (END T2) -->
 
 </head>

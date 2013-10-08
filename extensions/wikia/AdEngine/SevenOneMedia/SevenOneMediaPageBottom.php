@@ -110,7 +110,7 @@ wgStyleVersion="216916986";
 <meta name="apple-itunes-app" content="app-id=623705389">
 
 <!-- Media 71 integration -->
-	<link rel="stylesheet" href="/__am/90987243/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.css" />
+	<link rel="stylesheet" href="/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.css" />
 <!-- END of M71 -->
 
 </head>
@@ -1230,7 +1230,7 @@ mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.
 
 
 <!-- (T2) Loading my_ad_integration files for myAd framework-->
-<script type="text/javascript" src="/__am/90987243/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.js"></script>
+<script type="text/javascript" src="/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.js"></script>
 <!-- (END T2) -->
 
 <!-- (T3) Ad configuration -->
