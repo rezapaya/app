@@ -11,6 +11,7 @@ var AdConfig2 = function (
 	adProviderGpt,
 	adProviderEvolve,
 	adProviderGamePro,
+	adProviderSevenOneMedia,
 	adProviderLater,
 	adProviderNull
 ) {
@@ -81,6 +82,13 @@ var AdConfig2 = function (
 			return adProviderNull;
 		}
 
+		if (window.wgAdDriverUseSevenOneMedia) {
+			if (adProviderSevenOneMedia.canHandleSlot(slot)) {
+				return adProviderSevenOneMedia;
+			}
+			return adProviderNull;
+		}
+
 		// TODO refactor highValueSlots check to the top of the whole config
 		if (highValueSlots[slotname]) {
 			// First ask GamePro (german lang wiki)
@@ -110,7 +118,7 @@ var AdConfig2 = function (
 		var provider = getBackEndProvider(slot);
 
 		// Check if we should apply page length checking for that slot
-		if (adLogicPageDimensions.isApplicable(slot)) {
+		if (provider !== adProviderNull && adLogicPageDimensions.isApplicable(slot)) {
 			return adLogicPageDimensions.getProxy(provider);
 		}
 

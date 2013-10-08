@@ -107,7 +107,7 @@ if ( window.Wikia.AbTest && (Wikia.AbTest.getGroup( "DAR_RIGHTRAILPOSITION" ) ==
 			echo F::app()->renderView('Ad', 'Index', array('slotname' => 'INVISIBLE_2'));
 		}
 	}
-	echo F::app()->renderView('Ad', 'Index', array('slotname' => 'SEVENONE_MEDIA_FLUSH'));
+	echo F::app()->renderView('Ad', 'Index', array('slotname' => 'SEVENONEMEDIA_FLUSH'));
 ?>
 
 <? if( $jsAtBottom ): ?>

@@ -7,8 +7,6 @@
 /*global Geo, Wikia */
 /*global ghostwriter, Krux */
 /*global AdConfig2, AdEngine2, DartUrl, EvolveHelper, SlotTweaker, ScriptWriter */
-/*global WikiaDartHelper, WikiaFullGptHelper */
-/*global AdProviderEvolve, AdProviderGpt, AdProviderGamePro, AdProviderLater, AdProviderNull */
 /*global AdLogicDartSubdomain, AdLogicHighValueCountry, AdLogicPageDimensions, AdLogicPageLevelParams */
 /*global AdLogicPageLevelParamsLegacy */
 /*global require*/
@@ -33,6 +31,7 @@
 		adProviderGpt,
 		adProviderEvolve,
 		adProviderGamePro,
+		adProviderSevenOneMedia,
 		adProviderLater,
 		adProviderNull,
 		slotTweaker,
@@ -60,6 +59,7 @@
 	adProviderGpt = AdProviderGpt(tracker, log, window, Geo, slotTweaker, Cache, adLogicHighValueCountry, wikiaFullGpt);
 	adProviderEvolve = AdProviderEvolve(adLogicPageLevelParamsLegacy, scriptWriter, tracker, log, window, document, Krux, evolveHelper, slotTweaker);
 	adProviderGamePro = AdProviderGamePro(adLogicPageLevelParamsLegacy, scriptWriter, tracker, log, window, slotTweaker);
+	adProviderSevenOneMedia = AdProviderSevenOneMedia(adLogicPageLevelParamsLegacy, scriptWriter, tracker, log, window, slotTweaker);
 	adProviderNull = AdProviderNull(log, slotTweaker);
 
 	// Special Ad Provider, to deal with the late ads
@@ -79,6 +79,7 @@
 		adProviderGpt,
 		adProviderEvolve,
 		adProviderGamePro,
+		adProviderSevenOneMedia,
 		adProviderLater,
 		adProviderNull
 	);

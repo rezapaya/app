@@ -3,6 +3,7 @@ describe('AdConfig2', function(){
 	it('getProvider failsafe to Later', function() {
 		var adProviderNullMock = {name: 'NullMock'}
 			, adProviderGameProMock = {name: 'GameProMock', canHandleSlot: function() {return false;}}
+			, adProviderSevenOneMediaMock = {name: 'SevenOneMediaMock', canHandleSlot: function() {return false;}}
 			, adProviderEvolveMock = {name: 'EvolveMock', canHandleSlot: function() {return false;}}
 			, adProviderGptMock = {name:'GptMock', canHandleSlot: function() {return false;}}
 			, adProviderLaterMock = {name: 'LaterMock'}
@@ -21,6 +22,7 @@ describe('AdConfig2', function(){
 			, adProviderGptMock
 			, adProviderEvolveMock
 			, adProviderGameProMock
+			, adProviderSevenOneMediaMock
 			, adProviderLaterMock
 			, adProviderNullMock
 		);
@@ -31,6 +33,7 @@ describe('AdConfig2', function(){
 	it('getProvider use GPT for high value slots', function() {
 		var adProviderNullMock = {name: 'NullMock'}
 			, adProviderGameProMock = {name: 'GameProMock', canHandleSlot: function() {return false;}}
+			, adProviderSevenOneMediaMock = {name: 'SevenOneMediaMock', canHandleSlot: function() {return false;}}
 			, adProviderEvolveMock = {name: 'EvolveMock', canHandleSlot: function() {return false;}}
 			, adProviderGptMock = {name:'GptMock', canHandleSlot: function() {return true;}}
 			, adProviderLaterMock = {name: 'LaterMock', canHandleSlot: function() {return true;}}
@@ -51,6 +54,7 @@ describe('AdConfig2', function(){
 			, adProviderGptMock
 			, adProviderEvolveMock
 			, adProviderGameProMock
+			, adProviderSevenOneMediaMock
 			, adProviderLaterMock
 			, adProviderNullMock
 		);
@@ -62,6 +66,7 @@ describe('AdConfig2', function(){
 	it('getProvider use Evolve for NZ (only if provider accepts)', function() {
 		var adProviderNullMock = {name: 'NullMock'}
 			, adProviderGameProMock = {name: 'GameProMock', canHandleSlot: function() {return false;}}
+			, adProviderSevenOneMediaMock = {name: 'SevenOneMediaMock', canHandleSlot: function() {return false;}}
 			, adProviderEvolveMock = {name: 'EvolveMock', canHandleSlot: function() {return false;}}
 			, adProviderEvolveMockHandling = {name: 'EvolveMock', canHandleSlot: function() {return true;}}
 			, adProviderGptMock = {name:'GptMock'}
@@ -81,6 +86,7 @@ describe('AdConfig2', function(){
 			, adProviderGptMock
 			, adProviderEvolveMockHandling
 			, adProviderGameProMock
+			, adProviderSevenOneMediaMock
 			, adProviderLaterMock
 			, adProviderNullMock
 		);
@@ -91,6 +97,7 @@ describe('AdConfig2', function(){
 	it('getProvider do not use Evolve for PL', function() {
 		var adProviderNullMock = {name: 'NullMock'}
 			, adProviderGameProMock = {name: 'GameProMock', canHandleSlot: function() {return false;}}
+			, adProviderSevenOneMediaMock = {name: 'SevenOneMediaMock', canHandleSlot: function() {return false;}}
 			, adProviderEvolveMock = {name: 'EvolveMock', canHandleSlot: function() {return true;}}
 			, adProviderGptMock = {name:'GptMock'}
 			, adProviderLaterMock = {name: 'LaterMock'}
@@ -109,6 +116,7 @@ describe('AdConfig2', function(){
 			, adProviderGptMock
 			, adProviderEvolveMock
 			, adProviderGameProMock
+			, adProviderSevenOneMediaMock
 			, adProviderLaterMock
 			, adProviderNullMock
 		);
@@ -119,6 +127,7 @@ describe('AdConfig2', function(){
 	it('getProvider do not use Evolve for NZ when it cannot handle the slot', function() {
 		var adProviderNullMock = {name: 'NullMock'}
 			, adProviderGameProMock = {name: 'GameProMock', canHandleSlot: function() {return false;}}
+			, adProviderSevenOneMediaMock = {name: 'SevenOneMediaMock', canHandleSlot: function() {return false;}}
 			, adProviderEvolveMock = {name: 'EvolveMock', canHandleSlot: function() {return false;}}
 			, adProviderGptMock = {name:'GptMock'}
 			, adProviderLaterMock = {name: 'LaterMock'}
@@ -137,6 +146,7 @@ describe('AdConfig2', function(){
 			, adProviderGptMock
 			, adProviderEvolveMock
 			, adProviderGameProMock
+			, adProviderSevenOneMediaMock
 			, adProviderLaterMock
 			, adProviderNullMock
 		);
@@ -147,6 +157,7 @@ describe('AdConfig2', function(){
 	it('getProvider use GamePro if provider says so', function() {
 		var adProviderNullMock = {name: 'NullMock'}
 			, adProviderGameProMock = {name: 'GameProMock', canHandleSlot: function() {return true;}}
+			, adProviderSevenOneMediaMock = {name: 'SevenOneMediaMock', canHandleSlot: function() {return false;}}
 			, adProviderEvolveMock = {name: 'EvolveMock', canHandleSlot: function() {return false;}}
 			, adProviderGptMock = {name:'GptMock'}
 			, adProviderLaterMock = {name: 'LaterMock'}
@@ -165,6 +176,7 @@ describe('AdConfig2', function(){
 			, adProviderGptMock
 			, adProviderEvolveMock
 			, adProviderGameProMock
+			, adProviderSevenOneMediaMock
 			, adProviderLaterMock
 			, adProviderNullMock
 		);
@@ -177,6 +189,7 @@ describe('AdConfig2', function(){
 		var adProviderNullMock = {name: 'NullMock'}
 			, adProviderGameProMockRejecting = {name: 'GameProMock', canHandleSlot: function() {return false;}}
 			, adProviderGameProMock = {name: 'GameProMock', canHandleSlot: function() {return true;}}
+			, adProviderSevenOneMediaMock = {name: 'SevenOneMediaMock', canHandleSlot: function() {return false;}}
 			, adProviderEvolveMock = {name: 'EvolveMock', canHandleSlot: function() {return true;}}
 			, adProviderGptMock = {name:'GptMock'}
 			, adProviderLaterMock = {name: 'LaterMock'}
@@ -196,6 +209,7 @@ describe('AdConfig2', function(){
 			, adProviderGptMock
 			, adProviderEvolveMock
 			, adProviderGameProMockRejecting
+			, adProviderSevenOneMediaMock
 			, adProviderLaterMock
 			, adProviderNullMock
 		);
@@ -208,6 +222,7 @@ describe('AdConfig2', function(){
 			, adProviderGptMock
 			, adProviderEvolveMock
 			, adProviderGameProMock
+			, adProviderSevenOneMediaMock
 			, adProviderLaterMock
 			, adProviderNullMock
 		);
@@ -217,6 +232,7 @@ describe('AdConfig2', function(){
 	it('getProvider calls adLogicPageDimensionsMock.isApplicable with proper slot name', function() {
 		var adProviderNullMock = {name: 'NullMock'}
 			, adProviderGameProMock = {name: 'GameProMock', canHandleSlot: function() {return true;}}
+			, adProviderSevenOneMediaMock = {name: 'SevenOneMediaMock', canHandleSlot: function() {return false;}}
 			, adProviderEvolveMock = {name: 'EvolveMock', canHandleSlot: function() {return false;}}
 			, adProviderGptMock = {name:'GptMock'}
 			, adProviderLaterMock = {name: 'LaterMock'}
@@ -236,6 +252,7 @@ describe('AdConfig2', function(){
 			, adProviderGptMock
 			, adProviderEvolveMock
 			, adProviderGameProMock
+			, adProviderSevenOneMediaMock
 			, adProviderLaterMock
 			, adProviderNullMock
 		);
@@ -248,6 +265,7 @@ describe('AdConfig2', function(){
 		var adProviderNullMock = {name: 'NullMock'}
 			, adProviderProxyMock = {name: 'WindowSizeProviderProxyMock'}
 			, adProviderGameProMock = {name: 'GameProMock', canHandleSlot: function() {return true;}}
+			, adProviderSevenOneMediaMock = {name: 'SevenOneMediaMock', canHandleSlot: function() {return false;}}
 			, adProviderEvolveMock = {name: 'EvolveMock', canHandleSlot: function() {return false;}}
 			, adProviderGptMock = {name:'GptMock'}
 			, adProviderLaterMock = {name: 'LaterMock'}
@@ -266,6 +284,7 @@ describe('AdConfig2', function(){
 			, adProviderGptMock
 			, adProviderEvolveMock
 			, adProviderGameProMock
+			, adProviderSevenOneMediaMock
 			, adProviderLaterMock
 			, adProviderNullMock
 		);
