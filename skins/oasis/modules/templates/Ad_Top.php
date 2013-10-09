@@ -1,8 +1,6 @@
 <div class="WikiaTopAds" id="WikiaTopAds">
 <div class="WikiaTopAdsInner">
 
-<?= $app->renderView('Ad', 'Index', array('slotname' => 'TOP_INVISIBLE')); ?>
-
 <?php
 
 if (WikiaPageType::isWikiaHub()) {
@@ -28,8 +26,16 @@ if ($wg->EnableTopButtonWide) {
 ?>
 
 </div>
-
-<?= $app->renderView('Ad', 'Index', array('slotname' => 'TOP_SKYSCRAPER')); ?>
-<?= $app->renderView('Ad', 'Index', array('slotname' => 'INVISIBLE_SKIN')); ?>
-
 </div>
+
+<!-- SevenOne Media requested HTML {{{ -->
+	<div id="ads-outer" class="noprint">
+		<?= $app->renderView('Ad', 'Index', array('slotname' => 'ad-popup1')); ?>
+		<div id="ad-fullbanner2-outer">
+			<?= $app->renderView('Ad', 'Index', array('slotname' => 'ad-fullbanner2')); ?>
+		</div>
+		<div id="ad-skyscraper1-outer">
+			<?= $app->renderView('Ad', 'Index', array('slotname' => 'ad-skyscraper1')); ?>
+		</div>
+	</div>
+<!-- }}} SevenOne Media requested HTML -->

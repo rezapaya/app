@@ -2,55 +2,47 @@ var AdProviderSevenOneMedia = function(adLogicPageLevelParamsLegacy, scriptWrite
 	'use strict';
 
 	var ord = Math.round(Math.random() * 23456787654),
-		slotMap = {
-			'HOME_TOP_LEADERBOARD': {slot: 'fullbanner2'},
-			'HOME_TOP_RIGHT_BOXAD': {slot: 'rectangle1'},
-			'HUB_TOP_LEADERBOARD': {slot: 'fullbanner2'},
-			'TOP_INVISIBLE': {slot: 'popup1'},
-			'TOP_LEADERBOARD': {slot: 'fullbanner2'},
-			'TOP_RIGHT_BOXAD': {slot: 'rectangle1'},
-			'TOP_SKYSCRAPER': {slot: 'skyscraper1'},
-			'SEVENONEMEDIA_FLUSH': 'flushonly'
+		slots = {
+			'ad-popup1': true,
+			'ad-fullbanner2': true,
+			'ad-rectangle1': true,
+			'ad-skyscraper1': true,
+			'TOP_RIGHT_BOXAD': true,
+			'HOME_TOP_RIGHT_BOXAD': true,
+			'SEVENONEMEDIA_FLUSH': true
 		},
 		slotsToRender = [];
 
 	function canHandleSlot(slot) {
+		log(['canHandleSlot', slot], 5, 'AdProviderSevenOneMedia');
+
 		var slotname = slot[0];
 
-		log('canHandleSlot', 5, 'AdProviderSevenOneMedia');
-		log([slotname], 5, 'AdProviderSevenOneMedia');
-
-		if (slotMap[slotname]) {
+		if (slots[slotname]) {
+			log(['canHandleSlot', slot, true], 5, 'AdProviderSevenOneMedia');
 			return true;
 		}
 
+		log(['canHandleSlot', slot, false], 5, 'AdProviderSevenOneMedia');
 		return false;
 	}
 
 	function pushAd(slot) {
-		var slotname = slot[0],
-			slotnameDe = slotMap[slotname].slot,
-			ourSlot = document.getElementById(slotname),
-			outerSlot = document.createElement('div'),
-			innerSlot = document.createElement('div');
+		log(['pushAd', slot], 5, 'AdProviderSevenOneMedia');
 
-		outerSlot.id = 'ad-' + slotnameDe + '-outer';
-		innerSlot.id = 'ad-' + slotnameDe;
-		innerSlot.className = 'ad-wrapper';
-
-		ourSlot.appendChild(outerSlot);
-		outerSlot.appendChild(innerSlot);
-
-		slotsToRender.push(slotMap[slot[0]].slot);
+		var slotname = slot[0];
+		slotsToRender.push(slotname);
 	}
 
 	function insertAd(slotname) {
-		var elPostponed = document.getElementById('ads-postponed'),
+		log(['insertAd', slotname], 5, 'AdProviderSevenOneMedia');
+
+		/*var elPostponed = document.getElementById('ads-postponed'),
 			elTable = document.createElement('table'),
 			elTr = document.createElement('tr'),
 			elTd = document.createElement('td'),
 			elSlot = document.createElement('div'),
-			slotId = 'ad-' + slotname + '-postponed';
+			slotId = slotname + '-postponed';
 
 		elSlot.id = slotId;
 		elSlot.className = 'ad-wrapper';
@@ -59,21 +51,22 @@ var AdProviderSevenOneMedia = function(adLogicPageLevelParamsLegacy, scriptWrite
 		elTable.appendChild(elTr);
 		elTr.appendChild(elTd);
 		elTd.appendChild(elSlot);
-
-		scriptWriter.injectScriptByText(slotId, "myAd.insertAd('" + slotname + "');", function () {
-			setTimeout(function () {
-				console.log('move ' + slotname);
-				myAd.finishAd(slotname, 'move');
-			}, 100);
+*/
+		scriptWriter.injectScriptByText(slotname, "myAd.insertAd('" + slotname.replace('ad-', '') + "');", function () {
+			console.log('done ' + slotname.replace('ad-', ''));
+			myAd.finishAd(slotname.replace('ad-', ''));
+			//scriptWriter.injectScriptByText(slotId, "myAd.finishAd('" + slotname.replace('ad-', '') + "', 'move');");
 		});
 	}
 
 	function flushAds(slot) {
+		log(['flushAds', slot], 5, 'AdProviderSevenOneMedia');
+
 		var head = document.getElementsByTagName('head')[0],
 			link = document.createElement('link');
 
 		link.rel = 'stylesheet';
-		link.href = '/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/wikia-my_ad_integration.css';
+		link.href = '/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.css';
 		head.appendChild(link);
 
 		scriptWriter.injectScriptByUrl(slot[0], "/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.js",
@@ -109,14 +102,14 @@ var AdProviderSevenOneMedia = function(adLogicPageLevelParamsLegacy, scriptWrite
 					function () {
 						scriptWriter.injectScriptByText(slot[0], "myAd.loadScript('global');",
 							function () {
+								/*
 								var c = document.createElement('div');
 								c.id = 'ads-postponed';
-								document.getElementById(slot[0]).appendChild(c);
-								var i, len, postponed;
+								document.getElementById(slot[0]).appendChild(c);*/
+								var i, len;
 								for (i = 0, len = slotsToRender.length; i < len ; i += 1) {
 									insertAd(slotsToRender[i]);
 								}
-
 							});
 					});
 				});
@@ -127,11 +120,26 @@ var AdProviderSevenOneMedia = function(adLogicPageLevelParamsLegacy, scriptWrite
 		log('fillInSlot', 5, 'AdProviderSevenOneMedia');
 		log(slot, 5, 'AdProviderSevenOneMedia');
 
-		var slotname = slot[0],
-			slotInfo = slotMap[slotname];
+		var slotname = slot[0];
 
-		if (slotInfo === 'flushonly') {
+		if (slotname === 'SEVENONEMEDIA_FLUSH') {
 			flushAds(slot);
+		} else if (slotname === 'TOP_RIGHT_BOXAD' || slotname === 'HOME_TOP_RIGHT_BOXAD') {
+			var slot = document.getElementById(slotname),
+				outer = document.createElement('div'),
+				inner = document.createElement('div');
+
+			window.SOI_RT1 = true;
+			window.SOI_HP  = true;
+
+			outer.id = 'ad-rectangle1-outer';
+			inner.id = 'ad-rectangle1';
+			inner.className = 'ad-wrapper';
+
+			slot.appendChild(outer);
+			outer.appendChild(inner);
+
+			pushAd(['ad-rectangle1']);
 		} else {
 			pushAd(slot);
 		}
