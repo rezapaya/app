@@ -36,26 +36,10 @@ var AdProviderSevenOneMedia = function(adLogicPageLevelParamsLegacy, scriptWrite
 
 	function insertAd(slotname) {
 		log(['insertAd', slotname], 5, 'AdProviderSevenOneMedia');
+		//alert('insertAd ' + slotname.replace('ad-', '') + ' to #' + slotname);
 
-		/*var elPostponed = document.getElementById('ads-postponed'),
-			elTable = document.createElement('table'),
-			elTr = document.createElement('tr'),
-			elTd = document.createElement('td'),
-			elSlot = document.createElement('div'),
-			slotId = slotname + '-postponed';
-
-		elSlot.id = slotId;
-		elSlot.className = 'ad-wrapper';
-
-		elPostponed.appendChild(elTable);
-		elTable.appendChild(elTr);
-		elTr.appendChild(elTd);
-		elTd.appendChild(elSlot);
-*/
 		scriptWriter.injectScriptByText(slotname, "myAd.insertAd('" + slotname.replace('ad-', '') + "');", function () {
-			console.log('done ' + slotname.replace('ad-', ''));
 			myAd.finishAd(slotname.replace('ad-', ''));
-			//scriptWriter.injectScriptByText(slotId, "myAd.finishAd('" + slotname.replace('ad-', '') + "', 'move');");
 		});
 	}
 
@@ -69,50 +53,54 @@ var AdProviderSevenOneMedia = function(adLogicPageLevelParamsLegacy, scriptWrite
 		link.href = '/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.css';
 		head.appendChild(link);
 
-		scriptWriter.injectScriptByText(slot[0],
-			"var SOI_SITE     = 'wikia';" +
-			"var SOI_SUBSITE  = 'videospiele';" + // first level (home for home)" +
-			"var SOI_SUB2SITE = 'gta';" + // second level" +
-			"var SOI_SUB3SITE = '';" + // third level" +
-			"var SOI_CONTENT  = 'content';" + // content|video|gallery|game" +
-			"var SOI_WERBUNG  = true;" +
-			// "	// Available tags" +
-			"var SOI_PU1 = true;" + // popup1" +
-			"var SOI_FB2 = true;" + // fullbanner2" +
-			"var SOI_SC1 = true;" + // skyscraper1" +
-			// "// Suitability for special ads" +
-			// "// - from popup1" +
+		window.SOI_SITE = 'wikia';
+		window.SOI_SUBSITE = 'videospiele'; // first level (home for home)
+		window.SOI_SUB2SITE = 'gta'; // second level
+		window.SOI_SUB3SITE = ''; // third level
+		window.SOI_CONTENT  = 'content'; // content|video|gallery|game
+		window.SOI_WERBUNG  = true;
+		// "	// Available tags
+		window.SOI_PU1 = true; // popup1
+		window.SOI_FB2 = true; // fullbanner2
+		window.SOI_SC1 = true; // skyscraper1
+			// "// Suitability for special ads
+			// "// - from popup1
 //	var SOI_PU = false; // popup/popunder
-			"var SOI_PL = true;" + // powerlayer" +
+		window.SOI_PL = true; // powerlayer
 //	var SOI_FA = false; // baseboard (mnemonic: FooterAd, FloorAd)
 
-			// - from fullbanner2
-			"var SOI_PB = true;" + // powerbanner (728x180)
-			"var SOI_PD = true;" + // pushdown
-			"var SOI_BB = true;" + // billboard
-			"var SOI_WP = true;" + // wallpaper
-			"var SOI_FP = true;" + // fireplace
+		// - from fullbanner2
+		window.SOI_PB = true; // powerbanner (728x180)
+		window.SOI_PD = true; // pushdown
+		window.SOI_BB = true; // billboard
+		window.SOI_WP = true; // wallpaper
+		window.SOI_FP = true; // fireplace
 
-			// - from skyscraper1
-			"var SOI_SB = true;",
+		// - from skyscraper1
+		window.SOI_SB = true;
+
+		scriptWriter.injectScriptByUrl(
+			slot[0],
+			"/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.js",
 			function () {
-				scriptWriter.injectScriptByUrl(slot[0], "/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.js", function () {
-					scriptWriter.injectScriptByText(slot[0], "myAd.loadScript('site');",
-						function () {
-							scriptWriter.injectScriptByText(slot[0], "myAd.loadScript('global');",
-								function () {
-									/*
-									var c = document.createElement('div');
-									c.id = 'ads-postponed';
-									document.getElementById(slot[0]).appendChild(c);*/
-									var i, len;
-									for (i = 0, len = slotsToRender.length; i < len ; i += 1) {
-										insertAd(slotsToRender[i]);
-									}
-								});
-						});
-					});
-				});
+				scriptWriter.injectScriptByText(
+					slot[0],
+					"myAd.loadScript('site');",
+					function () {
+						scriptWriter.injectScriptByText(
+							slot[0],
+							"myAd.loadScript('global');",
+							function () {
+								var i, len;
+								for (i = 0, len = slotsToRender.length; i < len ; i += 1) {
+									insertAd(slotsToRender[i]);
+								}
+							}
+						);
+					}
+				);
+			}
+		);
 	}
 
 	function fillInSlot(slot) {
