@@ -110,7 +110,7 @@ wgStyleVersion="216916986";
 <meta name="apple-itunes-app" content="app-id=623705389">
 
 <!-- Media 71 integration -->
-	<link rel="stylesheet" href="/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/wikia-my_ad_integration.css" />
+	<link rel="stylesheet" href="/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.css" />
 <!-- END of M71 -->
 
 </head>
@@ -341,28 +341,23 @@ _qevents.push( { qacct:"p-8bG6eLqkH6Avk", labels:quantcastLabels } );
 	</div>
 </header>
 
-<!-- (T4.1) Placeholder containers for popup1, fullbanner2, skyscraper1 -->
-	<div id="WikiaTopAds" class="WikiaTopAds">
-		<div class="WikiaTopAdsInner">
-			<div id="TOP_INVISIBLE">
-				<div id="ad-popup1-outer">
-					<div id="ad-popup1" class="ad-wrapper"></div>
-				</div>
-			</div>
-			<div id="TOP_LEADERBOARD">
-				<div id="ad-fullbanner2-outer">
-					<div id="ad-fullbanner2" class="ad-wrapper" style="visibility:hidden;"></div>
-				</div>
-			</div>
-			<div id="TOP_BUTTON_WIDE"></div>
-		</div>
-		<div id="TOP_SKYSCRAPER">
-			<div id="ad-skyscraper1-outer">
-				<div id="ad-skyscraper1" class="ad-wrapper" style="display:none;"></div>
-			</div>
-		</div>
+<div id="WikiaTopAds" class="WikiaTopAds">
+	<div class="WikiaTopAdsInner">
+		<div id="TOP_LEADERBOARD"></div>
+		<div id="TOP_BUTTON_WIDE"></div>
 	</div>
 </div>
+<!-- (T4.1) Placeholder containers for popup1, fullbanner2, skyscraper1 -->
+	<div id="ads-outer" class="noprint">
+		<div id="ad-popup1" class="ad-wrapper"></div>
+		<div id="TOP_BUTTON_WIDE"></div>
+		<div id="ad-fullbanner2-outer">
+			<div id="ad-fullbanner2" class="ad-wrapper" style="visibility:hidden;"></div>
+		</div>
+		<div id="ad-skyscraper1-outer">
+			<div id="ad-skyscraper1" class="ad-wrapper" style="display:none;"></div>
+		</div>
+	</div>
 <!-- (END T4.1) -->
 
 <section id="WikiaPage" class="WikiaPage V2 WikiaGrid">
@@ -1321,8 +1316,8 @@ mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.
 			</td></tr></table>
 	<script type="text/javascript">
 		myAd.finishAd('fullbanner2', 'move');
-		if (!myAd.isSpecialAd('fullbanner2') && window.adslots2)
-			window.adslots2.push(["TOP_BUTTON_WIDE.force",null,"AdEngine2"]);	</script>
+		//if (!myAd.isSpecialAd('fullbanner2') && window.adslots2)
+		//	window.adslots2.push(["TOP_BUTTON_WIDE.force",null,"AdEngine2"]);	</script>
 	<table><tr><td>
 				<div id="ad-skyscraper1-postponed" class="ad-wrapper">
 					<script type="text/javascript">
