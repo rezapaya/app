@@ -47,7 +47,10 @@ var AdProviderSevenOneMedia = function(adLogicPageLevelParamsLegacy, scriptWrite
 		log(['flushAds', slot], 5, 'AdProviderSevenOneMedia');
 
 		var head = document.getElementsByTagName('head')[0],
-			link = document.createElement('link');
+			link = document.createElement('link'),
+			originalWikiaTopAds = document.getElementById('WikiaTopAds');
+
+		originalWikiaTopAds.style.display = 'none';
 
 		link.rel = 'stylesheet';
 		link.href = '/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.css';
