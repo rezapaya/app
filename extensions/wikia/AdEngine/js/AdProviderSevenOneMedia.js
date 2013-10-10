@@ -69,51 +69,50 @@ var AdProviderSevenOneMedia = function(adLogicPageLevelParamsLegacy, scriptWrite
 		link.href = '/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.css';
 		head.appendChild(link);
 
-		scriptWriter.injectScriptByUrl(slot[0], "/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.js",
-			function () {
 		scriptWriter.injectScriptByText(slot[0],
-				"var SOI_SITE     = 'wikia';" +
-				"var SOI_SUBSITE  = 'videospiele';" + // first level (home for home)" +
-				"var SOI_SUB2SITE = 'gta';" + // second level" +
-				"var SOI_SUB3SITE = '';" + // third level" +
-				"var SOI_CONTENT  = 'content';" + // content|video|gallery|game" +
-				"var SOI_WERBUNG  = true;" +
-				// "	// Available tags" +
-				"var SOI_PU1 = true;" + // popup1" +
-				"var SOI_FB2 = true;" + // fullbanner2" +
-				"var SOI_SC1 = true;" + // skyscraper1" +
-				// "// Suitability for special ads" +
-				// "// - from popup1" +
+			"var SOI_SITE     = 'wikia';" +
+			"var SOI_SUBSITE  = 'videospiele';" + // first level (home for home)" +
+			"var SOI_SUB2SITE = 'gta';" + // second level" +
+			"var SOI_SUB3SITE = '';" + // third level" +
+			"var SOI_CONTENT  = 'content';" + // content|video|gallery|game" +
+			"var SOI_WERBUNG  = true;" +
+			// "	// Available tags" +
+			"var SOI_PU1 = true;" + // popup1" +
+			"var SOI_FB2 = true;" + // fullbanner2" +
+			"var SOI_SC1 = true;" + // skyscraper1" +
+			// "// Suitability for special ads" +
+			// "// - from popup1" +
 //	var SOI_PU = false; // popup/popunder
-				"var SOI_PL = true;" + // powerlayer" +
+			"var SOI_PL = true;" + // powerlayer" +
 //	var SOI_FA = false; // baseboard (mnemonic: FooterAd, FloorAd)
 
-	// - from fullbanner2
-	"var SOI_PB = true;" + // powerbanner (728x180)
-	"var SOI_PD = true;" + // pushdown
-	"var SOI_BB = true;" + // billboard
-	"var SOI_WP = true;" + // wallpaper
-	"var SOI_FP = true;" + // fireplace
+			// - from fullbanner2
+			"var SOI_PB = true;" + // powerbanner (728x180)
+			"var SOI_PD = true;" + // pushdown
+			"var SOI_BB = true;" + // billboard
+			"var SOI_WP = true;" + // wallpaper
+			"var SOI_FP = true;" + // fireplace
 
-	// - from skyscraper1
-	"var SOI_SB = true;",
+			// - from skyscraper1
+			"var SOI_SB = true;",
 			function () {
-				scriptWriter.injectScriptByText(slot[0], "myAd.loadScript('site');",
-					function () {
-						scriptWriter.injectScriptByText(slot[0], "myAd.loadScript('global');",
-							function () {
-								/*
-								var c = document.createElement('div');
-								c.id = 'ads-postponed';
-								document.getElementById(slot[0]).appendChild(c);*/
-								var i, len;
-								for (i = 0, len = slotsToRender.length; i < len ; i += 1) {
-									insertAd(slotsToRender[i]);
-								}
-							});
+				scriptWriter.injectScriptByUrl(slot[0], "/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.js", function () {
+					scriptWriter.injectScriptByText(slot[0], "myAd.loadScript('site');",
+						function () {
+							scriptWriter.injectScriptByText(slot[0], "myAd.loadScript('global');",
+								function () {
+									/*
+									var c = document.createElement('div');
+									c.id = 'ads-postponed';
+									document.getElementById(slot[0]).appendChild(c);*/
+									var i, len;
+									for (i = 0, len = slotsToRender.length; i < len ; i += 1) {
+										insertAd(slotsToRender[i]);
+									}
+								});
+						});
 					});
 				});
-			});
 	}
 
 	function fillInSlot(slot) {
