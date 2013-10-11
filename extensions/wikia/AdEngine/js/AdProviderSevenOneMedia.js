@@ -8,6 +8,9 @@ var AdProviderSevenOneMedia = function(adLogicPageLevelParamsLegacy, scriptWrite
 			'ad-rectangle1': true,
 			'ad-skyscraper1': true,
 			'TOP_RIGHT_BOXAD': true,
+			'TOP_LEADERBOARD': true,
+			'HOME_TOP_LEADERBOARD': true,
+			'HUB_TOP_LEADERBOARD': true,
 			'HOME_TOP_RIGHT_BOXAD': true,
 			'SEVENONEMEDIA_FLUSH': true
 		},
@@ -51,18 +54,18 @@ var AdProviderSevenOneMedia = function(adLogicPageLevelParamsLegacy, scriptWrite
 		});
 	}
 
-	function flushAds(slot) {
+	function flushAds(slot, $) {
 		log(['flushAds', slot], 5, 'AdProviderSevenOneMedia');
 
-		var head = document.getElementsByTagName('head')[0],
-			link = document.createElement('link'),
-			originalWikiaTopAds = document.getElementById('WikiaTopAds');
+//		var head = document.getElementsByTagName('head')[0],
+//			link = document.createElement('link'),
+//			originalWikiaTopAds = document.getElementById('WikiaTopAds');
 
-		originalWikiaTopAds.style.display = 'none';
+//		originalWikiaTopAds.style.display = 'none';
 
-		link.rel = 'stylesheet';
-		link.href = '/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.css';
-		head.appendChild(link);
+//		link.rel = 'stylesheet';
+//		link.href = '/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.css';
+//		head.appendChild(link);
 
 		window.SOI_SITE = 'wikia';
 		window.SOI_SUBSITE = 'videospiele'; // first level (home for home)
@@ -117,8 +120,18 @@ var AdProviderSevenOneMedia = function(adLogicPageLevelParamsLegacy, scriptWrite
 
 		var slotname = slot[0];
 
+		if (slotname.search('LEADERBOARD') !== -1) {
+			return;
+		}
 		if (slotname === 'SEVENONEMEDIA_FLUSH') {
-			flushAds(slot);
+			window.wgAfterContentAndJS.push(function () {
+				var $ = window.jQuery;
+				$('head').append('<link id="sevenonemedia" rel="stylesheet"/>');
+				$('#sevenonemedia').load(function () {
+					$('#WikiaTopAds').hide();
+					flushAds(slot);
+				}).attr('href', '/__am/90987245/one/-/extensions/wikia/AdEngine/SevenOneMedia/my_ad_integration.css');
+			});
 		} else if (slotname === 'TOP_RIGHT_BOXAD' || slotname === 'HOME_TOP_RIGHT_BOXAD') {
 			var slot = document.getElementById(slotname),
 				outer = document.createElement('div'),
