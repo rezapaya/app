@@ -34,12 +34,20 @@ var AdProviderSevenOneMedia = function(adLogicPageLevelParamsLegacy, scriptWrite
 		slotsToRender.push(slotname);
 	}
 
-	function insertAd(slotname) {
+	function insertAd() {
+		var slotname = slotsToRender.shift();
+
+		if (!slotname) {
+			return;
+		}
+
 		log(['insertAd', slotname], 5, 'AdProviderSevenOneMedia');
 		//alert('insertAd ' + slotname.replace('ad-', '') + ' to #' + slotname);
 
 		scriptWriter.injectScriptByText(slotname, "myAd.insertAd('" + slotname.replace('ad-', '') + "');", function () {
 			myAd.finishAd(slotname.replace('ad-', ''));
+			log(['finish	Ad', slotname], 5, 'AdProviderSevenOneMedia');
+			insertAd();
 		});
 	}
 
@@ -94,10 +102,7 @@ var AdProviderSevenOneMedia = function(adLogicPageLevelParamsLegacy, scriptWrite
 							slot[0],
 							"myAd.loadScript('global');",
 							function () {
-								var i, len;
-								for (i = 0, len = slotsToRender.length; i < len ; i += 1) {
-									insertAd(slotsToRender[i]);
-								}
+								insertAd();
 							}
 						);
 					}
